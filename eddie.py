@@ -19,11 +19,9 @@ def exploit(args):
     fingerPrints, candidates=identify(args)
     if "exploits" in candidates[0]:
         for exploitID in candidates[0]["exploits"]:
-            print(exploit)
-            exploitMethod=imp.load_source("exploits."+str(exploitID), "exploits/"+str(exploitID)+".py")
-            print("\nName: ",exploitMethod.name)
-            print("Description: ",exploitMethod.description)
-            print("Author: ",exploitMethod.author)
+            exploitClass=imp.load_source("plugins.exploits."+exploitID, "plugins/exploits/"+exploitID+".py")
+            exploitMethod=exploitClass.Exploit()
+
             print("""Standard disclaimer:
             Only for research and educational purposes.
             Do NOT use this software on any device without explicit permission
