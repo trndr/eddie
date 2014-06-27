@@ -42,7 +42,7 @@
             "sha1": "06eeafda57938a5c3fab64c060fe93516a784846",
             "status": "connected"
         },
-        "exploits": [2
+        "exploits": ["ZyNOS_rom_0"
         ]
     },
     {
@@ -82,7 +82,7 @@
             "sha1": "eca838e1fb77daa1e760ed85291343500eb666ba",
             "status": "connected"
         },
-        "exploits": [1
+        "exploits": ["BVA_settingsBackup"
         ]
     },
     {
