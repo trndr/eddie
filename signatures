@@ -1,0 +1,128 @@
+[
+    {
+        "Firmware": "DD-WRT",
+        "Version": "v24-sp2 (08/07/10) std",
+        "OS": "Linux",
+        "http": {
+                "Cache-Control": "no-store, no-cache, must-revalidate",
+                "Connection": "close",
+                "Content-Type": "text/html",
+                "Pragma": "no-cache",
+                "Server": "httpd",
+                "WWW-Authenticate": "Basic realm=\"DD-WRT\"",
+                "code": 401,
+                "sha1": "c54b49fa631b788eb340b7df8cb1484947d8531f",
+                "status": "Unauthorized"
+            
+        },
+        "telnet": {
+            "sha1": "b154d3fc12c06792b8ba6fc8d3323b887fca03fc",
+            "status": "connected"
+        }
+    },
+    {
+        "Firmware": "Vanilla",
+        "Hardware version": "Z1",
+        "Manufacturer": "D-Link",
+        "Model": "DLS-320B",
+        "OS": "ZyNOS",
+        "Version": "v1.04",
+        "http": {
+            "Connection": "close",
+            "Content-Type": "text/html",
+            "EXT": "",
+            "Server": "RomPager/4.07 UPnP/1.0",
+            "Transfer-Encoding": "chunked",
+            "WWW-Authenticate": "Basic realm=\"DSL-320B\"",
+            "code": 401,
+            "sha1": "4577970cc02a3eb73f1ea25597e313763be6ce72",
+            "status": "Unauthorized"
+        },
+        "telnet": {
+            "sha1": "06eeafda57938a5c3fab64c060fe93516a784846",
+            "status": "connected"
+        },
+        "exploits": [2
+        ]
+    },
+    {
+        "Firmware": "DD-WRT",
+        "Version": "v24-sp2 (10/10/09) std",
+        "OS": "Linux",
+        "http": {
+            "Cache-Control": "no-store, no-cache, must-revalidate",
+            "Connection": "close",
+            "Content-Type": "text/html",
+            "Expires": "0",
+            "Pragma": "no-cache",
+            "Server": "httpd",
+            "code": 200,
+            "sha1": "ebf3e1268091b4635ee62ba5f6c6fd7bc3776b93",
+            "status": "Ok"
+        },
+        "telnet": {
+            "sha1": "26a0941812d5fd9e94c142c065d260fe99b2028e",
+            "status": "connected"
+        }
+    },
+    {
+        "Firmware": "Vodafone",
+        "Hardware version": "ARV4510PW-A",
+        "Manufacturer": "Bewan",
+        "Model": "Vodafone DSL Router",
+        "OS": "Linux",
+        "Version": "A51409-vodafone_IS1-24086",
+        "http": {
+            "Content-type": "text/html",
+            "code": 200,
+            "sha1": "1c59d713b44ce61ba7193af77c64c10d2b08fb27",
+            "status": "OK"
+        },
+        "telnet": {
+            "sha1": "eca838e1fb77daa1e760ed85291343500eb666ba",
+            "status": "connected"
+        },
+        "exploits": [1
+        ]
+    },
+    {
+        "Firmware": "Vanilla",
+        "Hardware version": "01",
+        "Manufacturer": "SMC",
+        "Model": "SMC7904BRA2",
+        "Version": "0.13a",
+        "http": {
+            "Cache-Control": "max-age=0, must-revalidate",
+            "Connection": "close",
+            "Content-type": "text/html",
+            "Expires": "Sun, 01 Jan 2001 00:00:00 GMT",
+            "Pragma": "no-cache",
+            "Server": "Apache/0.6.5",
+            "code": 200,
+            "sha1": "2b66c37361c025714261e2c1de5ca91ba368929d",
+            "status": "OK"
+        },
+        "telnet": {
+            "sha1": "5a891373c3606d3ca9cc77368a5eb797af152144",
+            "status": "connected"
+        }
+    },
+    {
+        "Manufacturer": "TRENDnet",
+        "Model": "TEW-430APB",
+        "Version": "v1.0",
+        "http": {
+            "Connection": "close",
+            "Content-Type": "text/html",
+            "Server": "CAMEO-httpd",
+            "WWW-Authenticate": "Basic realm=\"802.11g WLAN Login\"",
+            "code": 401,
+            "sha1": "897baa5de6c1a488223088835c6c587b48c709d2",
+            "status": "Unauthorized"
+        },
+        "telnet": {
+            "status": "Connection refused"
+        }
+    }
+
+]
