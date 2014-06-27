@@ -17,18 +17,20 @@ def identify(args):
     return((fingerPrints,candidates))
 def exploit(args):
     fingerPrints, candidates=identify(args)
-    exploitID="2"
-    exploitMethod=imp.load_source("exploits."+exploitID, "exploits/"+exploitID+".py")
-    print("\nName: ",exploitMethod.name)
-    print("Description: ",exploitMethod.description)
-    print("Author: ",exploitMethod.author)
-    print("""Standard disclaimer:
-    Only for research and educational purposes.
-    Do NOT use this software on any device without explicit permission
-    Any damage material or otherwise, which might be or is caused by this software is the sole liability of the user of the software""")
-    answer=input("Do you fully understand the disclaimer and are you absolutely sure you want to continue? yes/no\n")
-    if answer=="yes":
-        exploitMethod.exploit(args.ipaddress)
+    if "exploits" in candidates[0]:
+        for exploitID in candidates[0]["exploits"]:
+            print(exploit)
+            exploitMethod=imp.load_source("exploits."+str(exploitID), "exploits/"+str(exploitID)+".py")
+            print("\nName: ",exploitMethod.name)
+            print("Description: ",exploitMethod.description)
+            print("Author: ",exploitMethod.author)
+            print("""Standard disclaimer:
+            Only for research and educational purposes.
+            Do NOT use this software on any device without explicit permission
+            Any damage material or otherwise, which might be or is caused by this software is the sole liability of the user of the software""")
+            answer=input("Do you fully understand the disclaimer and are you absolutely sure you want to continue? yes/no\n")
+            if answer=="yes":
+                exploitMethod.exploit(args.ipaddress)
 
 def jsonfingerprint(args):
     fingerPrints=(fingerPrint.getFingerPrints(args.ipaddress, htmlPort=args.htmlport, telnetPort=args.telnetport))
