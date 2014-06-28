@@ -22,6 +22,9 @@ def exploit(args):
             exploitClass=imp.load_source("plugins.exploits."+exploitID, "plugins/exploits/"+exploitID+".py")
             exploitMethod=exploitClass.Exploit()
 
+            print("Name:",exploitMethod.name)
+            print("Description:",exploitMethod.description)
+            print("Author:",exploitMethod.author)
             print("""Standard disclaimer:
             Only for research and educational purposes.
             Do NOT use this software on any device without explicit permission
