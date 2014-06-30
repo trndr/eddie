@@ -1,6 +1,7 @@
 import argparse
 import fingerPrint
 import imp
+import core.database
 def identify(args):
     descriptionStrings=["Manufacturer","Model", "Hardware version", "Firmware", "Version", "OS"]
     fingerPrints=(fingerPrint.getFingerPrints(args.ipaddress, htmlPort=args.htmlport, telnetPort=args.telnetport))
@@ -10,28 +11,35 @@ def identify(args):
         for i in descriptionStrings:
             if i in candidates[0]:
                 print(i+": "+candidates[0][i])
-        if ("exploits" in candidates[0]):
-            print("It has "+str(len(candidates[0]["exploits"]))+" known exploit" +("s" if len(candidates[0]["exploits"])>1 else ""))
+        exploits=db.findExploits(candidates[0]["Model"])
+        if (len(exploits)>0):
+            print("It has "+str(len(exploits))+" known exploit" +("s" if len(exploits)>1 else ""))
         else:
             print("No exploits for this device have been added yet")
-    return((fingerPrints,candidates))
+    return((fingerPrints,candidates, exploits))
 def exploit(args):
-    fingerPrints, candidates=identify(args)
-    if "exploits" in candidates[0]:
-        for exploitID in candidates[0]["exploits"]:
-            exploitClass=imp.load_source("plugins.exploits."+exploitID, "plugins/exploits/"+exploitID+".py")
-            exploitMethod=exploitClass.Exploit()
+    fingerPrints, candidates, exploits=identify(args)
+    if (len(exploits)>0):
+        for exploitNumber in range(len(exploits)):
+            identificationNumber, name, description, author, filename, filepath=exploits[exploitNumber]
+            print("-"*80)
+            print(str(exploitNumber+1)+":")
+            print("Name: "+name)
+            print("Description: "+description)
+            print("Author: "+author)
 
-            print("Name:",exploitMethod.name)
-            print("Description:",exploitMethod.description)
-            print("Author:",exploitMethod.author)
-            print("""Standard disclaimer:
-            Only for research and educational purposes.
-            Do NOT use this software on any device without explicit permission
-            Any damage material or otherwise, which might be or is caused by this software is the sole liability of the user of the software""")
-            answer=input("Do you fully understand the disclaimer and are you absolutely sure you want to continue? yes/no\n")
-            if answer=="yes":
-                exploitMethod.exploit(args.ipaddress)
+        print("-"*80)
+        print("""Standard disclaimer:
+        Only for research and educational purposes.
+        Do NOT use this software on any device without explicit permission
+        Any damage material or otherwise, which might be or is caused by this software is the sole liability of the user of the software""")
+        answer=input("If you fully understand the disclaimer and are you absolutely sure you want to continue\n Select which exploit to run: ")
+        if answer.isdigit() and int(answer)-1 in range(len(exploits)):
+            exploitNumber=int(answer)-1
+            identificationNumber, name, description, author, filename, filepath=exploits[exploitNumber]
+            exploitClass=imp.load_source("plugins.exploits."+filename, filepath)
+            exploitMethod=exploitClass.Exploit()
+            exploitMethod.exploit(args.ipaddress)
 
 def jsonfingerprint(args):
     fingerPrints=(fingerPrint.getFingerPrints(args.ipaddress, htmlPort=args.htmlport, telnetPort=args.telnetport))
@@ -50,6 +58,8 @@ group.add_argument("--identify", dest="method", action="store_const", const=iden
 group.add_argument("--exploit", dest="method", action="store_const", const=exploit)
 group.add_argument("--json-fingerprint", dest="method", action="store_const", const=jsonfingerprint)
 parser.set_defaults(method=identify)
+
+db=core.database.Database()
 
 def main(args):
     args.method(args)
